@@ -60,7 +60,8 @@ function calcctotal ()
 
 function calcr ()
 {
-    if(productosr === null){
+    if(productosr === null)
+    {
     }
     else{
         productosr.forEach(element => { ptotalr += element.pfinal; });
@@ -163,9 +164,11 @@ function alertalimpiar()
 
 function drawsaldo()
 {
-    if(diayhorar === null){
+    if(diayhorar === null)
+    {
     }
-    else{
+    else
+    {
     totalr.innerHTML = `<a>saldo guardado: $${ptotalr} en ${ctotalr} productos</a><br><a style="font-size:15px;color:antiquewhite;">al día ${diayhorar.dia} a las ${diayhorar.hora} horas</a>`;
     }
 }
@@ -203,7 +206,8 @@ function borrar()
 
 function checkstorage()
 {
-    if(localStorage.getItem("productos") === "[]"){
+    if(localStorage.getItem("productos") === "[]")
+    {
     }
     else{
         document.getElementById("f-borrar").removeAttribute('disabled');
@@ -293,10 +297,10 @@ document.getElementById("f-limpiar").addEventListener("click", function(evento)
 
 function ejecutar()
 {
-    //VARS
+//VARS
     idp ++;
-    //INPUTS
     diadia();
+//INPUTS
     document.getElementById("f-guardar").removeAttribute('disabled');
     document.getElementById("f-limpiar").removeAttribute('disabled');
     producto.detalle = document.getElementById("f-detalle").value;
@@ -305,24 +309,24 @@ function ejecutar()
     i_iva = document.getElementById("f-iva").checked;
     i_des = document.getElementById("f-des").checked;
     producto.des = document.getElementById("f-porcentaje").value;
-    //CÁLCULOS
+//CÁLCULOS
     producto.pneto = calcneto(producto.precio, producto.cantidad);
     producto.piva = calciva(producto.pneto);
     producto.pfinal = calcdes (producto.piva);
-    //PUSH ARRAY
+//PUSH ARRAY
     productos.push({detalle:producto.detalle,precio:producto.precio,cantidad:producto.cantidad,pneto:producto.pneto,piva:producto.piva,pfinal:producto.pfinal,des:producto.des}); 
-    //CONVERSIÓN VISUAL
+//CONVERSIÓN VISUAL
     i_iva = booleantosi (i_iva);
     i_des = porcentajetosi (i_des);
-    // DOM
+// DOM
     let neww = document.createElement("tr");
     neww.innerHTML=`<td>${idp}</td><td>${producto.dia}</td><td>${producto.hora}</td><td>${producto.detalle}</td><td>$${producto.precio}</td><td>${producto.cantidad}</td><td>${i_iva}</td><td>${i_des}</td><td>$${producto.pfinal}</td>`;
     rows.appendChild(neww);
     alertaok();
-    // CÁLCULOS FINALES
+// CÁLCULOS FINALES
     calcptotal();
     calcctotal();
-    // FIN
+// FIN
     total.innerText = `PRECIO TOTAL: $${ptotal} (${ctotal} PRODUCTOS)`;
     resetearvars();
 }
