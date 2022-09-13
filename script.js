@@ -191,6 +191,7 @@ function guardar()
     drawsaldo();
     productosr = [];
     document.getElementById("f-borrar").removeAttribute('disabled');
+    document.getElementById("f-guardar").setAttribute('disabled','');
 }
 
 function borrar()
